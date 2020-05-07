@@ -85,7 +85,35 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Custom newsfeed item right here',
+    date: 'May 7st, 2020',
+    firstParagraph: `First paragraph goes here`,
+
+    secondParagraph: `Second paragraph goes here`,
+
+    thirdParagraph: `Third paragraph goes here`
+  },
+  {
+    title: 'ことわざ',
+    date: 'May 7st, 2020',
+    firstParagraph: `皆は誰かと繋がりたい`,
+
+    secondParagraph: `喧嘩するほど仲がいい`,
+
+    thirdParagraph: `仲がいいほど喧嘩する`
+  },
+  {
+    title: 'Full-stack web dev vs game dev',
+    date: 'May 7st, 2020',
+    firstParagraph: `idk both sound cool`,
+
+    secondParagraph: `Game dev sounds unstable`,
+
+    thirdParagraph: `Full-stack web dev positions probably pay more on average`
   }
+  
 ];
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
@@ -101,14 +129,110 @@ const data = [
 
   Hint: You will need to use createElement more than once here!
 
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above. */
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  //Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
-  Step 3: return the entire component.
+  //Step 3: return the entire component.
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  //Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
 
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
+  //Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
-*/
+  let loadArticle = articleObj => {
+
+    let article = document.createElement("div");
+    article.classList.add("article");
+    
+    let title = document.createElement("h2");
+    title.textContent = articleObj.title;
+    article.appendChild(title);
+  
+    let date = document.createElement("p");
+    date.classList.add("date");
+    date.textContent = articleObj.date;
+    article.appendChild(date);
+    
+    let p1 = document.createElement("p");
+    p1.textContent = articleObj.firstParagraph;
+    article.appendChild(p1);
+  
+    let p2 = document.createElement("p");
+    p2.textContent = articleObj.secondParagraph;
+    article.appendChild(p2);
+  
+    let p3 = document.createElement("p");
+    p3.textContent = articleObj.thirdParagraph;
+    article.appendChild(p3);
+    
+    let articleBtn = document.createElement("span");
+    articleBtn.classList.add("expandButton");
+    articleBtn.innerHTML = "Expand / Retract";
+    article.appendChild(articleBtn);
+
+    articleBtn.addEventListener("click", event => {
+
+      article.classList.toggle("article-open");
+
+    });
+
+    return article;
+
+  }
+
+let articles = document.querySelector(".articles");
+
+data.forEach(item => {
+  
+  articles.appendChild(loadArticle(item));
+
+});
+  
+
+  // let loadArticles = articleArr => {
+
+  //   articleArr.forEach(item => {
+  
+  //     let articles = document.querySelector(".articles");
+  
+  //     let article = document.createElement("div");
+  //     article.classList.add("article");
+  //     articles.appendChild(article);
+      
+  //     let title = document.createElement("h2");
+  //     title.textContent = item.title;
+  //     article.appendChild(title);
+    
+  //     let date = document.createElement("p");
+  //     date.classList.add("date");
+  //     date.textContent = item.date;
+  //     article.appendChild(date);
+      
+  //     let p1 = document.createElement("p");
+  //     p1.textContent = item.firstParagraph;
+  //     article.appendChild(p1); //????
+    
+  //     let p2 = document.createElement("p");
+  //     p2.textContent = item.secondParagraph;
+  //     article.appendChild(p2);
+    
+  //     let p3 = document.createElement("p");
+  //     p3.textContent = item.thirdParagraph;
+  //     article.appendChild(p3);
+    
+      
+  //     let articleBtn = document.createElement("span");
+  //     articleBtn.classList.add("expandButton");
+  //     articleBtn.innerHTML = "Expand / Retract";
+  //     article.appendChild(articleBtn);
+  
+  //     articleBtn.addEventListener("click", event => {
+  
+  //       article.classList.toggle("article-open");
+  
+  //     });
+  
+  //   })
+  // }
+  
+  // loadArticles(data);
