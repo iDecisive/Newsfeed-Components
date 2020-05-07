@@ -55,9 +55,24 @@ let loadMenu = menuArr => {
 
 document.querySelector(".header").appendChild(loadMenu(menuItems));
 
+gsap.to(".menu", {duration: 0, x: -500}); //Sets position to -500 on x axis at start so the opening animation starts from there
+
 document.querySelector(".menu-button").addEventListener("click", event => {
 
-  document.querySelector(".menu").classList.toggle("menu--open");
+  if (document.querySelector(".menu").classList.contains("menu--open") == false) {
+
+    document.querySelector(".menu").classList.add("menu--open");
+    gsap.to(".menu", {duration: 2, x: 0});
+
+  }else {
+
+    gsap.to(".menu", {duration: 2, x: -500, onComplete: () => {
+
+      document.querySelector(".menu").classList.remove("menu--open")
+
+    }});
+  }
+  
 
 });
 
